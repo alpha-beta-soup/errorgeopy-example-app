@@ -100,3 +100,6 @@ var resultToMap = function(geojson) {
     console.log(err);
   }
 }
+
+$('#warning-box').hide();
+$('#note-box').hide();
