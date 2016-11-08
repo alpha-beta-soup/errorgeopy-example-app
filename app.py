@@ -13,10 +13,6 @@ from errorgeopy.geocoders import GeocoderPool
 app = Flask(__name__)
 CORS(app)
 
-CONFIG = os.path.abspath(os.path.join(
-    os.path.dirname(__file__), '..', 'configuration.yml'))
-GPOOL = GeocoderPool.fromfile(CONFIG, yaml.load)
-
 
 def get_config(excluding, exactly_one=False):
     config = {
@@ -58,7 +54,7 @@ def get_config(excluding, exactly_one=False):
 
 
 def get_geocoding_pool(config):
-    return GeocoderPool(config, yaml.load)
+    return GeocoderPool(config)
 
 
 class InvalidUsage(Exception):
