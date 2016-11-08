@@ -1,3 +1,6 @@
+// var HOST = "http://localhost:5000";
+var HOST = "https://errorgeopy.herokuapp.com";
+
 function httpGet(theUrl, callback) {
   document.getElementById('loader').style.display = "block";
   $('#warning-box').hide();
@@ -28,7 +31,7 @@ function transferFailed(evt) {
 function processForm(e) {
     if (e.preventDefault) e.preventDefault();
     addr = document.getElementById("address").value;
-    httpGet("http://localhost:5000/forward/cluster?address=" + encodeURIComponent(addr), resultToMap)
+    httpGet(HOST + "/forward/cluster?address=" + encodeURIComponent(addr), resultToMap)
     return false; // Return false to prevent the default form behavior
 }
 
