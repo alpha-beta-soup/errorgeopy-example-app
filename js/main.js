@@ -25,16 +25,6 @@ function transferFailed(evt) {
   document.getElementById('loader').style.display = "none";
 }
 
-// function show(id) {
-//   document.getElementById(id).style.display = "block";
-//   return
-// }
-//
-// function show(id) {
-//   document.getElementById(id).style.display = "none";
-//   return
-// }
-
 function processForm(e) {
     if (e.preventDefault) e.preventDefault();
     addr = document.getElementById("address").value;
