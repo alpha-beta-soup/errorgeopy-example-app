@@ -9,5 +9,5 @@ Github Pages: http://www.nearimprov.com/errorgeopy-example-app/
 ### Notes to self
 
 - http://www.saintsjd.com/2014/05/12/run-vendored-binaries-on-heroku.html (helpful deployment tips, especially getting the GEOS binary compiled for Heroku)
-- `git subtree push --prefix build/dist origin gh-pages` (changes to frontend (`demo/`))
+- `git subtree push --prefix demo origin gh-pages` (changes to frontend (`demo/`))
 - `git push heroku master` (for changes to backend (`app.py`, `Procfile`, etc.))
