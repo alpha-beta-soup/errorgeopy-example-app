@@ -111,6 +111,8 @@ def location_summary(location):
 
 def location_cluster_summary(location):
     fc = {"type": "FeatureCollection", "features": []}
+    if not location.clusters:
+        return fc
     append = lambda geom, properties: fc["features"].append({"type": "Feature", "geometry": geom, "properties": properties})
     for rank, loc in enumerate(location.clusters, 1):
         append(loc.location.most_central_location.__geo_interface__,
