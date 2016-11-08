@@ -1,0 +1,80 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+    <meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
+    <title>Sample errorgeopy application</title>
+    <link rel="stylesheet" href="../static/main.css" />
+    <script
+            src="https://code.jquery.com/jquery-3.1.1.min.js"
+            integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+            crossorigin="anonymous"></script></head>
+    <script
+        src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+        integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.1/dist/leaflet.css" />
+	  <script src="https://unpkg.com/leaflet@1.0.1/dist/leaflet.js"></script>
+    <!-- <link rel="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css" /> -->
+    <script src="https://use.fontawesome.com/815afc6e0d.js"></script>
+
+<body>
+    <a href="https://github.com/alpha-beta-soup/errorgeopy" target="_blank"><img id="banner" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"></a>
+    <form id="geocode-form" action=''>
+      <div class="input-group input-group-lg">
+        <div class="input-group-btn">
+          <button style="border-radius:0;" class="btn btn-primary" type="button">Geocode</button>
+          <button type="button" class="btn btn-info" data-toggle="collapse" href="#info-box">
+            <span class="glyphicon glyphicon-info-sign"></span>
+          </button>
+        </div>
+        <input id="address" type="text" class="form-control" placeholder="1 Rugby Street, Mount Cook, Wellington 6021"/>
+      </div>
+      <!-- <i class="fa fa-spinner fa-spin"></i> -->
+      <div id="info-box" class="alert alert-info collapse" role="alert">
+        <button type="button" class="close" data-toggle="collapse" href="#info-box">
+          <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+        </button>
+        <p>
+          <strong>Geocoding</strong> is the process of taking a (postal) address description, and returning an estimated location in numerical coordianates. <a href="#" target=_blank><i class="fa fa-external-link"></i></a> There are lots of services that offer this, and each is sure of itself. This app leverages <strong><a href="https://github.com/alpha-beta-soup/errorgeopy" target="_blank" class=".alert-link">errorgeopy</a></strong>, a Python library that doesn't hide the spatial error inherent in geocoding.
+        </p>
+        <p>
+          When you geocode an address in this app, there is a backend service using errorgeopy that repeats your query to <strong>seven</strong> different geocoding services (Nominatim, Google, Bing, GeoNames, LiveAddress, OpenCage, ArcGIS).
+        </p>
+        <p>
+          Errogeopy collates these results, and, for this demo, runs a cluster detection algorithm to find clusters. This is an effective way to cross-reference geocoding across several major geocoding APIs, and avoid dependence on one geoocoding service even when all others may disagree with where it locates an address.
+        </p>
+        <p>
+          Errorgeopy is a wrapper over <strong><a href="https://github.com/geopy/geopy" target="_blank" class=".alert-link">geopy</a></strong>, a more fundamental geocoding API for Python.
+        </p>
+        <p>
+          Erroregeopy can also do reverse geocoding, employing fuzzy string matching to continue to expose the uncertainty.
+        </p>
+        <hr />
+        <p>
+          <strong>TL;DR?</strong> Give this app an address, and it will give you lots of good guesses for where that lives on the map. That's different to what you usually do when you put an address into Google Maps, as Google Maps only consults itself.
+        </p>
+      </div>
+      <div id="warning-box" class="alert alert-warning collapse fade in" role="alert">
+        <p>
+          There was an issue processing this address.
+        </p>
+      </div>
+      <div id="note-box" class="alert alert-warning collapse fade in" role="alert">
+        <p>
+          The request was successful but no geocoders could return a response. Try something a little different.
+        </p>
+      </div>
+    </form>
+    <div id="map-wrapper">
+      <div id="map"></div>
+      <div class="leaflet-top leaflet-left">
+        <div id="loader"></div>
+      </div>
+    </div>
+
+    <script type="text/javascript" src='../js/main.js'></script>
+</body>
+</html>
